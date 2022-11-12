@@ -16,16 +16,16 @@ int main()
 {
     //G=(V,E,W)
     int v, e, source;//No. of Vertices,Edges;Source Vertex
-    printf("Enter no of vertices: ");
+    printf("Enter no of junctions: ");
     scanf("%d", &v);//V={0,1,2,3,4....v-1}
-    printf("no of edges: ");
+    printf("no of pipelines: ");
     scanf("%d", &e);
     struct edge* edgeset;//Set of edges that undergoes modification
     edgeset = (struct edge*)malloc(sizeof(struct edge)*e);
     struct edge edgesetdum[e];//Array of Structures that represent edge original version
     //E={edgesetdum[i].p,edgesetdum[i].c|0<=i<e}
     //W={edgesetdum[i].dis|0<=i<e}
-    printf("Enter parent no., child no. and distance of the edges inorder and press enter: ");
+    printf("Enter parent location, child location and distance of the pipelines inorder and \npress enter:(enter edges by swaping in case of drinage lines) ");
     for(int i=0; i<e; i++)
     {
         scanf("%d %d %d", &edgeset[i].p, &edgeset[i].c, &edgeset[i].dis);
@@ -38,7 +38,7 @@ int main()
         edgesetdum[i].dis = edgeset[i].dis;
     }
 
-    printf("Enter source number: ");
+    printf("Enter sink/source location: ");
     scanf("%d", &source);
 
     arboalgo(edgeset, v, e, source);
@@ -59,7 +59,7 @@ int main()
             mincost += edgesetdum[i].dis;
         }
     }
-    printf("The minimum cost is %d\n",mincost);
+    printf("The minimum pipeline distance is %d\n",mincost);
     parent[source] = -1;
 
     int mindist[v];
@@ -74,7 +74,7 @@ int main()
     }
     mindist[source] = 0;
 
-    printf("edges in the minimum cost spanning tree of the given graph are:\n");
+    printf("pipelines map of min pipeline usage for given pipeline map:\n");
     for(int i=0; i<e; i++)
     {
         if(edgeset[i].dis == 0)
