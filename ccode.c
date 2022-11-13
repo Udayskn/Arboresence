@@ -85,7 +85,7 @@ int main()
 
     return 0;
 }
-
+//algorithm starts
 void arboalgo(struct edge* edgeset, int v,  int e, int root)
 {
     int min[v];
